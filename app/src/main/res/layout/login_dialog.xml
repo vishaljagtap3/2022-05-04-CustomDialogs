@@ -6,7 +6,7 @@
 
     <EditText
         android:hint="Username"
-        android:id="@+id/edtUasername"
+        android:id="@+id/edtUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

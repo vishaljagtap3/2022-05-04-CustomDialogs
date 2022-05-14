@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnLogin;
+    private Button btnLogin, btnLogin1;
     private EditText edtUsername, edtPassword;
     private Button btnSignIn;
 
@@ -21,7 +21,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btnLogin = findViewById(R.id.btnLogin);
+        btnLogin1 = findViewById(R.id.btnLogin1);
+
         btnLogin.setOnClickListener(new BtnLoginClickListener());
+        btnLogin1.setOnClickListener(new BtnLogin1ClickListener());
+    }
+
+    class BtnLogin1ClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            LoginDialog loginDialog = new LoginDialog(MainActivity.this);
+            loginDialog.show();
+        }
     }
 
     private class BtnLoginClickListener implements View.OnClickListener {
@@ -29,9 +40,9 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
 
             Dialog loginDialog = new Dialog(MainActivity.this);
-            loginDialog.setContentView(R.layout.login_diaog);
+            loginDialog.setContentView(R.layout.login_dialog);
 
-            edtUsername = loginDialog.findViewById(R.id.edtUasername);
+            edtUsername = loginDialog.findViewById(R.id.edtUsername);
             edtPassword = loginDialog.findViewById(R.id.edtPassword);
             btnSignIn = loginDialog.findViewById(R.id.btnSignIn);
 
