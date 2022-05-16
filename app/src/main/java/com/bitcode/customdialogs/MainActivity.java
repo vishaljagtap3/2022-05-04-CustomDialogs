@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnLogin, btnLogin1;
+    private Button btnLogin, btnLogin1, btnLogin2;
     private EditText edtUsername, edtPassword;
     private Button btnSignIn;
 
@@ -22,9 +22,32 @@ public class MainActivity extends AppCompatActivity {
 
         btnLogin = findViewById(R.id.btnLogin);
         btnLogin1 = findViewById(R.id.btnLogin1);
+        btnLogin2 = findViewById(R.id.btnLogin2);
 
         btnLogin.setOnClickListener(new BtnLoginClickListener());
         btnLogin1.setOnClickListener(new BtnLogin1ClickListener());
+        btnLogin2.setOnClickListener(new BtnLogin2ClickListener());
+    }
+
+    private class BtnLogin2ClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            LoginDialog loginDialog = new LoginDialog(MainActivity.this);
+            loginDialog.setOnLoginListener(new MyOnLoginListener());
+            loginDialog.show();
+        }
+    }
+
+    class MyOnLoginListener implements LoginDialog.OnLoginListener {
+        @Override
+        public void onSuccess() {
+            mt("My Success code");
+        }
+
+        @Override
+        public void onFail() {
+            mt("My Fail code");
+        }
     }
 
     class BtnLogin1ClickListener implements View.OnClickListener {
@@ -50,11 +73,10 @@ public class MainActivity extends AppCompatActivity {
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(edtUsername.getText().toString().equals("bitcode") && edtPassword.getText().toString().equals("bitcode")) {
+                            if (edtUsername.getText().toString().equals("bitcode") && edtPassword.getText().toString().equals("bitcode")) {
                                 mt("Success Action -- Start HomeActivity");
                                 loginDialog.dismiss();
-                            }
-                            else {
+                            } else {
                                 mt("Failure Action");
                             }
                         }

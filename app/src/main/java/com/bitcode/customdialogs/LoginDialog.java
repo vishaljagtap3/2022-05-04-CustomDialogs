@@ -10,8 +10,20 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 public class LoginDialog extends Dialog {
+
     private EditText edtUsername, edtPassword;
     private Button btnSignIn;
+
+    public interface OnLoginListener {
+        void onSuccess();
+        void onFail();
+    }
+
+    private OnLoginListener onLoginListener;
+
+    public void setOnLoginListener(OnLoginListener onLoginListener) {
+        this.onLoginListener = onLoginListener;
+    }
 
     public LoginDialog(@NonNull Context context) {
         super(context);
@@ -28,12 +40,20 @@ public class LoginDialog extends Dialog {
     private class BtnSignInClickListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+
+            if(onLoginListener == null) {
+                return;
+            }
+
             if(edtUsername.getText().toString().equals("bitcode") && edtPassword.getText().toString().equals("bitcode")) {
-                mt("Success Action -- Start HomeActivity");
+                /*mt("Success Action -- Start HomeActivity");
+                dismiss();*/
+                onLoginListener.onSuccess();
                 dismiss();
             }
             else {
-                mt("Failure Action");
+                //mt("Failure Action");
+                onLoginListener.onFail();
             }
         }
     }

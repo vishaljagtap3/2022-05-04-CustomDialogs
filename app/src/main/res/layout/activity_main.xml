@@ -19,5 +19,11 @@
         android:text="Login1"
         android:id="@+id/btnLogin1" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login2"
+        android:id="@+id/btnLogin2" />
+
 
 </LinearLayout>
